@@ -55,6 +55,7 @@ func main() {
 
 	var client ipisp.Client
 
+	// if looking up more than 10 IPs, use the whois client
 	if len(ipList) <= 10 {
 		client, _ = ipisp.NewDNSClient()
 		log.Trace("using DNS client")
@@ -69,6 +70,8 @@ func main() {
 	resp = cleanResponses(resp)
 
 	var f *os.File
+
+	// if an output file is not provided, write to STDOUT
 	if *filePath == "" {
 		f = os.Stdout
 	} else {
@@ -88,6 +91,7 @@ func main() {
 
 }
 
+// cleanResponses removes any responses with nil IP entries
 func cleanResponses(resp []ipisp.Response) []ipisp.Response {
 	output := make([]ipisp.Response, 0)
 
@@ -99,6 +103,7 @@ func cleanResponses(resp []ipisp.Response) []ipisp.Response {
 	return output
 }
 
+// writeJSON outputs the responses as JSON
 func writeJSON(resp []ipisp.Response, f *os.File) {
 	type Record struct {
 		IP      string
@@ -118,6 +123,8 @@ func writeJSON(resp []ipisp.Response, f *os.File) {
 	fmt.Fprint(f, string(rec))
 
 }
+
+// writeCSV outputs the response as CSV
 func writeCSV(resp []ipisp.Response, f *os.File) {
 	w := csv.NewWriter(f)
 	defer w.Flush()
@@ -129,6 +136,7 @@ func writeCSV(resp []ipisp.Response, f *os.File) {
 	}
 }
 
+// writeHuman outputs the response as a pretty tabular output
 func writeHuman(resp []ipisp.Response, f *os.File) {
 	var w *tabwriter.Writer
 	w = tabwriter.NewWriter(f, 0, 0, 1, ' ', tabwriter.Debug)
@@ -150,11 +158,12 @@ func displayUsage() {
 	pflag.PrintDefaults()
 }
 
+// openStdinOrFile reads from stdin or a file based on what input the user provides
 func openStdinOrFile() io.Reader {
 	var err error
 	r := os.Stdin
-	if len(pflag.Args()) > 1 {
-		r, err = os.Open(os.Args[1])
+	if len(pflag.Args()) >= 1 {
+		r, err = os.Open(pflag.Arg(0))
 		if err != nil {
 			panic(err)
 		}
