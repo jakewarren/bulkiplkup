@@ -45,7 +45,9 @@ Optional flags:
 
 ## Acknowledgements
 
-Team Cymru for hosting their excellent IP to ASN mapping service - http://www.team-cymru.com/IP-ASN-mapping.html
+* Team Cymru for hosting their excellent IP to ASN mapping service - http://www.team-cymru.com/IP-ASN-mapping.html
+* https://github.com/42wim/dt/ for the inspiration of output format
+* https://github.com/ammario/ipisp/ Golang IP to ISP library utilizing team cymru's IP to ASN service
 
 ## Changes
 
