@@ -143,8 +143,7 @@ func writeCSV(resp []ipisp.Response, f *os.File) {
 
 // writeHuman outputs the response as a pretty tabular output
 func writeHuman(resp []ipisp.Response, f *os.File) {
-	var w *tabwriter.Writer
-	w = tabwriter.NewWriter(f, 0, 0, 1, ' ', tabwriter.Debug)
+	w := tabwriter.NewWriter(f, 0, 0, 1, ' ', tabwriter.Debug)
 	defer w.Flush()
 
 	fmt.Fprintf(w, "IP\tLOC\tASN\tISP\tRange\n")
