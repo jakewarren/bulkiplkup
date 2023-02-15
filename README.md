@@ -1,5 +1,5 @@
 # bulkiplkup
-[![Build Status](https://travis-ci.org/jakewarren/bulkiplkup.svg?branch=master)](https://travis-ci.org/jakewarren/bulkiplkup/)
+[![Build Status](https://github.com/jakewarren/bulkiplkup/workflows/lint/badge.svg)](https://github.com/jakewarren/bulkiplkup/actions)
 [![GitHub release](http://img.shields.io/github/release/jakewarren/bulkiplkup.svg?style=flat-square)](https://github.com/jakewarren/bulkiplkup/releases])
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/jakewarren/bulkiplkup/blob/master/LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/jakewarren/bulkiplkup)](https://goreportcard.com/report/github.com/jakewarren/bulkiplkup)
@@ -16,7 +16,7 @@ Download the latest release from [https://github.com/jakewarren/bulkiplkup/relea
 ### Option 2: From source
 
 ```
-go get github.com/jakewarren/bulkiplkup
+go install github.com/jakewarren/bulkiplkup@latest
 ```
 
 ## Example
