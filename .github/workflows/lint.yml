@@ -10,10 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v3
         with:
           # Optional: show only new issues if it's a pull request. The default value is `false`.
           only-new-issues: true
+          # show file name and line numbers in output
+          args: --timeout 15m0s --verbose --out-${NO_FUTURE}format tab
           
       - name: test
         run: go test -v ./...
