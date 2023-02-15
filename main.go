@@ -9,6 +9,7 @@ import (
 	"io"
 	"net"
 	"os"
+	"strings"
 	"text/tabwriter"
 
 	"github.com/apex/log"
@@ -44,7 +45,11 @@ func main() {
 
 	ipList := make([]net.IP, 0)
 	for scanner.Scan() {
-		ip := net.ParseIP(scanner.Text())
+		input := strings.TrimSpace(scanner.Text())
+		ip := net.ParseIP(input)
+		if ip == nil {
+			log.Errorf("error parsing IP: %s", input)
+		}
 		if IsRoutable(ip) && ip != nil {
 			ipList = append(ipList, ip)
 		} else {
