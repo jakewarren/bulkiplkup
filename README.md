@@ -9,7 +9,7 @@
 This tool assists with enriching a large amount of IP addresses with additonal information. If an [ipapi.is](https://ipapi.is/) API key is provided, additional information will be fetched. The data from ipapi.is is extended with an additional field called `is_suspicious` which is set to true if the IP is a known abuser, VPN, proxy, Tor exit node, datacenter, or the company's abuse score is 'High' or 'Very High'. 
 
 > [!NOTE]
-> The output format of the ipapi.is is opioninated and was designed to facilitate threat hunts against log data. To receive all available information use the JSON output, which can then be filtered as needed. 
+> The output format of the ipapi.is is opioninated and was designed to facilitate threat hunts. To receive all available information use the JSON output, which can then be filtered as needed. 
 
 ## Install
 ### Option 1: Binary

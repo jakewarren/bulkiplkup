@@ -45,10 +45,12 @@ func writeCSV(resp []ipisp.Response, f *os.File) {
 	w := csv.NewWriter(f)
 	defer w.Flush()
 
-	w.Write([]string{"IP", "Location", "ASN", "ISP", "Range"})
+	csvWriteErr := w.Write([]string{"IP", "Location", "ASN", "ISP", "Range"})
+	checkError("error writing CSV header: ", csvWriteErr)
 
 	for _, i := range resp {
-		w.Write([]string{i.IP.String(), i.Country, i.ASN.String(), i.Name.String(), i.Range.String()})
+		csvWriteErr = w.Write([]string{i.IP.String(), i.Country, i.ASN.String(), i.Name.String(), i.Range.String()})
+		checkError("error writing CSV row: ", csvWriteErr)
 	}
 }
 
